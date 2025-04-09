@@ -9,18 +9,18 @@ def index():
 
 @app.route('/display', methods=['POST'])
 def display_file():
-    file = request.files.get('file')  # Obtém o arquivo enviado
+    file = request.files.get('file')  # Obtém o arquivo enviado.
 
     if not file or file.filename == '':
-        return "Nenhum arquivo enviado", 400  # Retorna erro 400 se nenhum arquivo for enviado
+        return "Nenhum arquivo enviado", 400  # Retorna erro 400 se nenhum arquivo for enviado.
 
     # Verifica se o arquivo tem extensão .csv
     if not file.filename.endswith('.csv'):
         return "Apenas arquivos CSV são permitidos", 400
 
-    # Tenta ler o arquivo CSV com diferentes codificações
+    # Tenta ler o arquivo CSV com diferentes codificações.
     try:
-        df = pd.read_csv(file, sep=None, engine="python")  # Detecta automaticamente o delimitador
+        df = pd.read_csv(file, sep=None, engine="python")  # Detecta automaticamente o delimitador.
     except UnicodeDecodeError:
         file.seek(0)
         try:
@@ -32,4 +32,4 @@ def display_file():
     return render_template('display.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Inicia o servidor Flask
+    app.run(debug=True)  # Inicia o servidor Flask.
