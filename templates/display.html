@@ -1,25 +1,53 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Visualização dos dados</title>
-        <style>
-            .data {
-                width: 100%;
-                border-collapse: collapse;
-            }
-            .data th, .data td {
-                border: 1px solid black;
-                padding: 8px;
-                text-align: left;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Conteudo do arquivo CSV</h1>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização dos Dados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .data {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .data th, .data td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #28a745;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Conteúdo do Arquivo CSV</h1>
+
+    {% if tables %}
         {% for table in tables %}
             {{ table|safe }}
         {% endfor %}
-        <br>
-        <a href="/">Enviar outro arquivo</a>
-    </body>
+    {% else %}
+        <p>Nenhum dado encontrado.</p>
+    {% endif %}
+
+    <br>
+    <a href="/">Enviar outro arquivo</a>
+
+</body>
 </html>
