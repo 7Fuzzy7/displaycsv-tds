@@ -1,56 +1,47 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Visualização dos dados</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-                padding: 20px;
-                background-color: #f4f4f4;
-                text-align: center;
-            }
-            h1 {
-                color: #333;
-            }
-            .data {
-                width: 80%;
-                margin: 20px auto;
-                border-collapse: collapse;
-                background: #fff;
-            }
-            .data th, .data td {
-                border: 1px solid black;
-                padding: 10px;
-                text-align: left;
-            }
-            .data th {
-                background-color: #ddd;
-            }
-            a {
-                display: inline-block;
-                margin-top: 20px;
-                padding: 10px 15px;
-                text-decoration: none;
-                background: #007BFF;
-                color: white;
-                border-radius: 5px;
-            }
-            a:hover {
-                background: #0056b3;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Conteúdo do Arquivo CSV</h1>
-        {% if tables %}
-            {% for table in tables %}
-                {{ table|safe }}
-            {% endfor %}
-        {% else %}
-            <p>Nenhum dado encontrado.</p>
-        {% endif %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Arquivo CSV</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        form {
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 50%;
+            background-color: #f9f9f9;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload de Arquivo CSV</h1>
+    <form action="/display" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
         <br>
-        <a href="/">Enviar outro arquivo</a>
-    </body>
+        <button type="submit">Enviar</button>
+    </form>
+
+</body>
 </html>
